@@ -1,0 +1,32 @@
+<div class="container mt-4">
+
+  <!-- TABLA DE CRIPTOMONEDAS -->
+   <div class="row mt-5 pt-5">
+     <div class="col-12">
+        <div class="table-responsive">
+            <table class="table table-striped table-hover align-middle text-right">
+                <thead class="table-dark">
+                    <tr>
+                        <th class="col-1">Rank</th>
+                        <th class="col-1"></th>
+                        <th class="col-3">Name</th>
+                        <th class="col-2">Price</th>
+                        <th data-cy="market-cap-header" class="col-3">Marketcap</th>
+                        <th class="col-2">24H (%)</th>
+                    </tr>
+                </thead>
+            <tbody>
+                <tr *ngFor="let coin of filteredCoins">
+                    <td data-cy="rank">{{ coin.market_cap_rank }}</td>
+                    <td><img [src]="coin.image" alt="{{ coin.name }}" width="32"></td>
+                    <td>{{ coin.name }}</td>
+                    <td data-cy="price">{{ coin.current_price | currency:'USD' }}</td>
+                    <td data-cy="market-cap">{{ coin.market_cap | number }}</td>
+                    <td [ngClass]="{'text-success': coin.price_change_percentage_24h >= 0, 'text-danger': coin.price_change_percentage_24h < 0}">
+                        {{ coin.price_change_percentage_24h | number:'1.2-2' }}% </td>
+                </tr>
+            </tbody>
+            </table>
+     </div>
+  </div>
+</div>
